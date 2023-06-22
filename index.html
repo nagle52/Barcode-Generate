@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+
+  <body>
+    <div class="qrcode-container">
+      <h2>Generate QR Code</h2>
+      <div class="content">
+        <div class="control">
+          <textarea class="qrcode-massage"></textarea>
+          <button class="generate-btn">Generate QR Code</button>
+        </div>
+        <div class="qrcode"></div>
+      </div>
+    </div>
+
+<!-----------------------------------------javascript start-------------------------------------------------->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+      integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+      let massage = "";
+      const QRCodeImage = document.querySelector(".qrcode");
+      const QRCodeMessage = document.querySelector(".qrcode-massage");
+      const generateBtn = document.querySelector(".generate-btn");
+
+      let qrcode = new QRCode(QRCodeImage, {
+        text: massage,
+        width: 300,
+        height: 300,
+        colorDark: "#001219",
+        colorlight: "3fffff",
+      });
+
+      const generateQRCode = (massage) => {
+        qrcode.clear();
+        qrcode.makeCode(massage);
+      };
+
+      generateBtn.addEventListener("click", () => {
+        massage = QRCodeMessage.value;
+        generateQRCode(massage);
+      });
+    </script>
+
+<!-----------------------------------------javascript end-------------------------------------------------->
+
+  </body>
+</html>
+
+
+<!-- QR Code Generate-->
